@@ -1,0 +1,54 @@
+O(X) v -O(X):-act(X).
+F(X) v -F(X):-act(X).
+:- O(X),-Poss(X).
+-Poss(X):- -Do(X), act(X).
+:-O(X), F(X).
+Do(X)v-Do(X):- act(X).
+:-F(X), Do(X).
+Happens(X):-Do(X).
+:-Do(X),-Poss(X).
+:~ O(X). [1:1]
+:~ F(X). [1:1]
+%Common Core.
+:~ tooclose(X,1), -F("stop"). [1:5]
+:~ toooclose("west",1), -F("west"). [1:7]
+:~ toooclose("north",1), -F("north"). [1:7]
+:~ toooclose("south",1), -F("south"). [1:7]
+:~ toooclose("east",1), -F("east"). [1:7]
+:~ cornerclose("north","west",1), -F("west"). [1:6]
+:~ cornerclose("north","west",1), -F("north"). [1:6]
+:~ cornerclose("north","east",1), -F("east"). [1:6]
+:~ cornerclose("north","east",1), -F("north"). [1:6]
+:~ cornerclose("south","west",1), -F("west"). [1:6]
+:~ cornerclose("south","west",1), -F("south"). [1:6]
+:~ cornerclose("south","east",1), -F("south"). [1:6]
+:~ cornerclose("south","east",1), -F("east"). [1:6]
+:~ tooclose(X,0), -F("stop"), not Exception. [1:2]
+:~ toooclose("west",0), -F("west"), not Exception. [1:4]
+:~ toooclose("north",0), -F("north"), not Exception. [1:4]
+:~ toooclose("south",0), -F("south"), not Exception. [1:4]
+:~ toooclose("east",0), -F("east"), not Exception. [1:4]
+:~ cornerclose("north","west",0), -F("west"), not Exception. [1:3]
+:~ cornerclose("north","west",0), -F("north"), not Exception. [1:3]
+:~ cornerclose("north","east",0), -F("east"), not Exception. [1:3]
+:~ cornerclose("north","east",0), -F("north"), not Exception. [1:3]
+:~ cornerclose("south","west",0), -F("west"), not Exception. [1:3]
+:~ cornerclose("south","west",0), -F("south"), not Exception. [1:3]
+:~ cornerclose("south","east",0), -F("south"), not Exception. [1:3]
+:~ cornerclose("south","east",0), -F("east"), not Exception. [1:3]
+:~ Eaten, -O("stop"). [1:3]
+%Eaten is passed by Java when Pacman eats a ghost.
+:-O("stop"), -F("west").
+:-O("stop"), -F("north").
+:-O("stop"), -F("south").
+:-O("stop"), -F("east").
+dont(X):-F(X).
+% Added because of a peculiarity in JDLV.
+:-F("west"),F("north"),F("south"),F("east"),F("stop").
+act("east").
+act("north").
+act("south").
+act("west").
+act("stop").
+%Note that ghost 1 is the blue ghost and 0 is the orange ghost.
+%For explanations of the predicates check the comments of the other encodings.

@@ -1,0 +1,36 @@
+O(X) v -O(X):-act(X).
+F(X) v -F(X):-act(X).
+:- O(X),-Poss(X).
+-Poss(X):- -Do(X), act(X).
+:-O(X), F(X).
+Do(X)v-Do(X):- act(X).
+:-F(X), Do(X).
+Happens(X):-Do(X).
+:-Do(X),-Poss(X).
+:~ O(X). [1:1]
+:~ F(X). [1:1]
+%Common Core.
+:~ tooclose(X,Y), -F("stop"). [1:2]
+%Through this predicate Java passes the direction in which a scared ghost Y is too close to pacman, such that stopping could lead to pacman eating the ghost.
+:~ toooclose("west",Y), -F("west"). [1:3]
+:~ toooclose("north",Y), -F("north"). [1:3]
+:~ toooclose("south",Y), -F("south"). [1:3]
+:~ toooclose("east",Y), -F("east"). [1:3]
+%Through this predicate Java passes the direction in which a scared ghost Y is too close to pacman, such that moving in that direction could lead to pacman eating the ghost.
+:~ cornerclose("north","west",Y), -F("west"). [1:3]
+:~ cornerclose("north","west",Y), -F("north"). [1:3]
+:~ cornerclose("north","east",Y), -F("east"). [1:3]
+:~ cornerclose("north","east",Y), -F("north"). [1:3]
+:~ cornerclose("south","west",Y), -F("west"). [1:3]
+:~ cornerclose("south","west",Y), -F("south"). [1:3]
+:~ cornerclose("south","east",Y), -F("south"). [1:3]
+:~ cornerclose("south","east",Y), -F("east"). [1:3]
+% When Pacman is too close in two direction such that the ghost and Pacman moving in different directions could lead to Pacman eating the ghost.
+dont(X):-F(X).
+% Added because of a peculiarity in JDLV.
+:-F("west"),F("north"),F("south"),F("east"),F("stop").
+act("east").
+act("north").
+act("south").
+act("west").
+act("stop").
