@@ -1,0 +1,18 @@
+O(X) v -O(X):-act(X).
+F(X) v -F(X):-act(X).
+:- O(X),-Poss(X).
+-Poss(X):- -Do(X), act(X).
+:-O(X), F(X).
+Do(X)v-Do(X):- act(X).
+:-F(X), Do(X).
+Happens(X):-Do(X).
+:-Do(X),-Poss(X).
+:~ O(X). [1:1]
+:~ F(X). [1:1]
+%Common Core.
+:~-F(have_fence), not Location(sea).[1:2]
+:~ Do(have_fence), -O(have_white_fence), not Location(sea).[1:2]
+act(have_fence).
+act(have_white_fence).
+Location(sea).
+Do(have_fence).

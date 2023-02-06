@@ -1,0 +1,18 @@
+O(X) v -O(X):-act(X).
+F(X) v -F(X):-act(X).
+:- O(X),-Poss(X).
+-Poss(X):- -Do(X), act(X).
+:-O(X), F(X).
+Do(X)v-Do(X):- act(X).
+:-F(X), Do(X).
+Happens(X):-Do(X).
+:-Do(X),-Poss(X).
+:~ O(X). [1:1]
+:~ F(X). [1:1]
+%Common Core.
+:~ -O(help), Happens(emergency). [1:3]
+:~ -O(meet). [1:2]
+act(meet).
+act(help).
+:-Do(help), Do(meet).
+Happens(emergency).

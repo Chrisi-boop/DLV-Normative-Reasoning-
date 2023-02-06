@@ -1,0 +1,21 @@
+O(X) v -O(X):-act(X).
+F(X) v -F(X):-act(X).
+:- O(X),-Poss(X).
+-Poss(X):- -Do(X), act(X).
+:-O(X), F(X).
+Do(X)v-Do(X):- act(X).
+:-F(X), Do(X).
+Happens(X):-Do(X).
+:-Do(X),-Poss(X).
+:~ O(X). [1:1]
+:~ F(X). [1:1]
+%Common Core.
+
+:~ -O(assist). [1:2]
+%Corresponds to it should not be that he is ought to go to assistance.
+:~Do(assist), -O(tell). [1:2]
+% Going to the aid should not be done without telling.
+:~-Do(assist), -F(tell). [1:2]
+-Do(assist).
+act(assist).
+act(tell).
